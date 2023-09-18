@@ -1,0 +1,10 @@
+.main{
+    position: relative;
+    height: 90vh;
+    width: 100%;
+}
+
+.main__contents{
+    position: absolute;
+    top: 20%;
+}

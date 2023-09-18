@@ -1,0 +1,84 @@
+.authentication__container{
+    display: grid;
+    grid-template-columns: 35% 60%;
+    gap:5%;   
+}
+
+.authentication__img{
+    border-radius: 2rem;
+}
+
+.authentication__img:hover .authentication__key{
+    transition: var(--transition);
+   transform: scale(1.1);
+}
+
+.authentication__key{
+    height: 100%;
+    border-radius: 10px;
+}
+
+h4{
+    color: white;
+}
+
+.googleimg{
+    height:30px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    padding-right: 5px; 
+}
+
+.redirection{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.forgot__pass{
+    color: var(--color-danger);
+
+}
+
+.reg__color{
+    margin-left: 1rem;
+}
+
+.google{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.password__wrapper{
+    position: relative;
+}
+
+.showpassword{
+    cursor: pointer;
+    position: absolute;
+    right: 0.85rem;
+    top: 8px;
+
+}
+
+.eyes{
+    color:black;
+}
+
+form > p{
+  text-align: center;  
+  margin-bottom: 2rem;
+}
+
+
+@media (max-width:900px){
+    .container{
+        width: var(--container-width-md);
+    }
+    .authentication__container{
+        grid-template-columns: 100%;
+    }
+}
