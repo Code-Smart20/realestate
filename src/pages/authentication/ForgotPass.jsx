@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import './authentication.css'
-
+import React, { useState } from 'react';
+import './authentication.css';
 import key from "./../../images/key.jpg";
 import { Link } from 'react-router-dom';
 
@@ -29,10 +28,10 @@ const ForgotPass = () => {
           
               <div className="redirection">
                 <p>Don't have an Account? <Link className='reg__color' to="/register">Register</Link></p>
-                <Link className='forgot__pass' to="/forgotpass">Forgot Password</Link>
+                <Link className='forgot__pass' to="/signin">SignIn</Link>
               </div>
 
-              <button className=' btn btn-primary form__input' type='submit'>Submit</button>
+              <button className=' btn btn-primary form__input' type='submit'>Send Reset Password</button>
               <p>OR</p>
 
               <button className='btn__primary form__input' type="button">Continue With Google</button>

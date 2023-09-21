@@ -1,10 +1,11 @@
 import React from 'react'
 import "./home.css"
+import key from "./../../images/key.jpg"
 
 const Home = () => {
   return (
       <main className='main'>
-          <img src="" alt="" />
+          <img src={key} alt="bgcover" />
           <div className="main__coverbg"></div>
           <div className="main__container container">
               <div className="main__contents">
