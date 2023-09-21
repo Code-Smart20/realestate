@@ -1,15 +1,44 @@
 import React, { useState } from 'react';
 import "./authentication.css";
-
 import key from "./../../images/key.jpg"
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { AiOutlineEye, AiFillEyeInvisible } from "react-icons/ai"
+import { getAuth, createUserWithEmailAndPassword,updateProfile } from "firebase/auth"
+import { db } from '../../firebase';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+
 
 const SignUp = () => {
+  const [FullName, setFullName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const [FullName, setFullName] = useState("");
+
   const [showPassword, setShowPassword] = useState(true);
+  const navigate = useNavigate();
+
+ async function handleSignup(e) {
+    e.preventDefault()
+    try {
+      const auth = getAuth()
+      const userCredentials = await createUserWithEmailAndPassword(auth, Email, Password);
+      updateProfile(auth.currentUser, {
+        displayName: FullName
+      })
+
+      const user = userCredentials.user
+      await setDoc(doc(db, "users", user.uid), {
+        email: Email,
+        name: FullName,
+        timestamp: serverTimestamp(),
+      });
+
+      navigate("/")
+
+      console.log(user)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <section>
@@ -21,7 +50,7 @@ const SignUp = () => {
             <img className='authentication__key' src={key} alt="login key" />
           </div>
           <div className="authentication__form">
-            <form>
+            <form onSubmit={handleSignup}>
               <input onChange={(e) => { setFullName(e.target.value) }} className='form__input' type='text' placeholder='Full Name'/>
               <input onChange={(e) => { setEmail(e.target.value) }} className='form__input' type="email" placeholder='Email Adress' />
 
