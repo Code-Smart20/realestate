@@ -2,13 +2,34 @@ import React, { useState } from 'react';
 import "./authentication.css";
 
 import key from "./../../images/key.jpg";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineEye, AiFillEyeInvisible } from "react-icons/ai"
+import { toast } from 'react-toastify';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+
 
 const SignIn = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate()
+
+  async function handleSignIn(e) {
+    e.preventDefault()
+
+    try {
+      const auth = getAuth()
+      const userCredentials = await signInWithEmailAndPassword(auth, Email, Password)
+      
+      if (userCredentials.user) {
+         navigate("/")
+      }
+      
+    } catch (error) {
+      toast.error("Wrong Signin Credentials")
+    }
+  }
 
   return (
     <section>
@@ -20,7 +41,7 @@ const SignIn = () => {
           <img className='authentication__key' src={key} alt="login key" />
         </div>
         <div className="authentication__form">
-          <form>
+          <form onSubmit={handleSignIn}>
 
               <input onChange={(e) => { setEmail(e.target.value) }} className='form__input' type="email" placeholder='Email Adress' />
              
