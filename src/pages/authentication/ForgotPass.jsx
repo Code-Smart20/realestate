@@ -2,15 +2,23 @@ import React, { useState } from 'react';
 import './authentication.css';
 import key from "./../../images/key.jpg";
 import { Link } from 'react-router-dom';
-
+import { getAuth, sendPasswordResetEmail} from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 const ForgotPass = () => {
   
   const [Email, setEmail] = useState("");
 
-  const handleSignin = (e) => {
+  async function handleForgotPassword(e){
     e.preventDefault();
-    console.log(Email);
+    try {
+      const auth = getAuth()
+
+      await sendPasswordResetEmail(auth, Email)  
+    } catch (error) {
+      toast.error("Send not Succesfull")
+    }
+
   }
 
   return (
@@ -23,11 +31,11 @@ const ForgotPass = () => {
             <img className='authentication__key' src={key} alt="login key" />
           </div>
           <div className="authentication__form">
-            <form onSubmit={handleSignin}>
+            <form onSubmit={handleForgotPassword}>
               <input onChange={(e) => { setEmail(e.target.value) }} className='form__input' type="email" placeholder='Email Adress' />
           
               <div className="redirection">
-                <p>Don't have an Account? <Link className='reg__color' to="/register">Register</Link></p>
+                <p>Just Remembered your password <Link className='reg__color' to="/register">SignIn Instead</Link></p>
                 <Link className='forgot__pass' to="/signin">SignIn</Link>
               </div>
 
