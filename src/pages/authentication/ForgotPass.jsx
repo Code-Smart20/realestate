@@ -14,7 +14,8 @@ const ForgotPass = () => {
     try {
       const auth = getAuth()
 
-      await sendPasswordResetEmail(auth, Email)  
+      await sendPasswordResetEmail(auth, Email)
+      toast.success("message was sent Succesfully")
     } catch (error) {
       toast.error("Send not Succesfull")
     }
