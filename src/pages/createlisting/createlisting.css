@@ -1,0 +1,16 @@
+.listing{
+    max-width: var(--container-width-sm);
+    width: 600px;
+    margin: 0 auto;
+    border: 2px solid red;
+}
+
+.listing__buttons, .listing__numbers{
+    display: flex;
+    gap: 2rem;
+}
+
+.listing button, .numbers{
+    width:100%
+}
+

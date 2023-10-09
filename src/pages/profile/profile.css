@@ -1,0 +1,27 @@
+.profile form{
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}
+
+.form__edit{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form__edit-change span{
+   color: red;
+   cursor: pointer;
+}
+
+.form__edit .logout{
+    color: blue;
+    cursor: pointer;
+}
+
+.house__icon{
+    text-align: large;
+    margin-right: 2rem;
+    
+}

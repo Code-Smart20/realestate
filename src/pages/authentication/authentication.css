@@ -74,11 +74,25 @@ form > p{
 }
 
 
+
+/*media querry for medium devices*/
 @media (max-width:900px){
     .container{
         width: var(--container-width-md);
     }
     .authentication__container{
         grid-template-columns: 100%;
+    }
+}
+
+/*media querry for small devices*/
+@media (max-width:600px) {
+
+    .container{
+        width:var(--container-width-sm)
+    }
+
+    .authentication__img{
+        display: none;
     }
 }
