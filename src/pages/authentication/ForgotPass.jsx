@@ -8,16 +8,17 @@ import { useAuth } from '../../authentication/userAuth';
 const ForgotPass = () => {
   
   const [Email, setEmail] = useState("");
-  const { user,ForgotPass } = useAuth();
+  const { user,forgotPass } = useAuth();
 
   async function handleForgotPassword(e){
     e.preventDefault();
     try {
       if (user) {
-        await ForgotPass(Email)
+        await forgotPass(Email)
         toast.success("message was sent Succesfully")
       }
     } catch (error) {
+      console.log(error.message)
       toast.error("Send not Succesfull")
     }
 
