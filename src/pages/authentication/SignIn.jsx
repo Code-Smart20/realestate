@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import "./authentication.css";
 
 import key from "./../../images/key.jpg";
-import { Link} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineEye, AiFillEyeInvisible } from "react-icons/ai"
 
 import { useAuth } from '../../authentication/userAuth';
+import { toast } from 'react-toastify';
+useNavigate
+
 
 
 const SignIn = () => {
@@ -13,7 +16,25 @@ const SignIn = () => {
   const [Password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const { user, handleSignIn } = useAuth();
+  const navigate = useNavigate()
+
+  // shared context
+  const { user, logIn } = useAuth();
+
+  //signin functionality
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+
+    try {
+      await logIn(Email, Password);
+      
+      //navigating to gome page after successful signin
+      navigate("/")
+    } catch (error) {
+      toast("you have not signedUp yet")
+    }
+  }
 
   return (
     <section>
@@ -27,7 +48,7 @@ const SignIn = () => {
           
         <div className="authentication__form">
             
-          <form>
+          <form onSubmit={handleSignIn}>
 
               <input onChange={(e) => { setEmail(e.target.value) }} className='form__input' type="email" placeholder='Email Adress' />
              

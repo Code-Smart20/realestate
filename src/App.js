@@ -8,16 +8,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthContextProvider } from './authentication/userAuth';
 
 
-
-
-
 function App() {
   return (
     <div className="app">
 
       <AuthContextProvider>
-
-      
         <Header />
 
         <Routes>

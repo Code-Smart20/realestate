@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import './authentication.css';
 import key from "./../../images/key.jpg";
 import { Link } from 'react-router-dom';
-import { getAuth, sendPasswordResetEmail} from 'firebase/auth';
 import { toast } from 'react-toastify';
+import { useAuth } from '../../authentication/userAuth';
 
 const ForgotPass = () => {
   
   const [Email, setEmail] = useState("");
+  const { user,ForgotPass } = useAuth();
 
   async function handleForgotPassword(e){
     e.preventDefault();
     try {
-      const auth = getAuth()
-
-      await sendPasswordResetEmail(auth, Email)
-      toast.success("message was sent Succesfully")
+      if (user) {
+        await ForgotPass(Email)
+        toast.success("message was sent Succesfully")
+      }
     } catch (error) {
       toast.error("Send not Succesfull")
     }
