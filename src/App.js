@@ -6,6 +6,7 @@ import { Home, Profile, SignUp,SignIn, Offers, ForgotPass,CreateListing } from '
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContextProvider } from './authentication/userAuth';
+import ProtectRoutes from './ProtectRoutes';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<SignUp />} />
 
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile" element={<ProtectRoutes><Profile /></ProtectRoutes>} />
 
           <Route path="/offers" element={<Offers />} />
           <Route path="/forgotpass" element={<ForgotPass />} />

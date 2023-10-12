@@ -9,10 +9,12 @@ const AuthContext = createContext();
 // context provider function
 export function AuthContextProvider({ children }) {
     const [user, setUser] = useState({});
+    const [loading,setLoading] = useState(true)
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            setLoading(false)
         });
 
         return () => {
@@ -87,7 +89,7 @@ export function AuthContextProvider({ children }) {
       }
     */
         return (
-            <AuthContext.Provider value={{ user, logIn, logOut, signUp,forgotPass }}>
+            <AuthContext.Provider value={{ user, logIn, logOut, signUp,forgotPass,loading }}>
                 {children}
             </AuthContext.Provider>
         );
